@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.BlogInfoDao">
+
+    <resultMap id="BlogInfoModel_map" type="com.blog.pojo.BlogInfo">
+        <id property="id" column="l_id" />
+        <result property="blogType" column="l_blog_type" />
+        <result property="blogImg" column="vc_blog_img" />
+        <result property="blogTitle" column="vc_blog_title" />
+        <result property="blogContent" column="vc_blog_content" />
+        <result property="publishDate" column="d_publish_date" />
+        <result property="userId" column="l_user_id" />
+    </resultMap>
+
+    <select id="selectByPrimaryKey" parameterType="String" resultMap="BlogInfoModel_map" >
+        SELECT
+            l_id,
+            l_blog_type,
+            vc_blog_img,
+            vc_blog_title,
+            vc_blog_content,
+            d_publish_date,
+            l_user_id
+        FROM
+            t_blog_info
+        WHERE
+            l_id = #{id}
+    </select>
+
+
+    <insert id="insertSelective" parameterType="com.blog.pojo.BlogInfo">
+        INSERT INTO t_blog_info(
+                l_id,
+                l_blog_type,
+                vc_blog_img,
+                vc_blog_title,
+                vc_blog_content,
+                d_publish_date,
+                l_user_id
+        )
+        VALUES(
+                #{id},
+                #{blogType},
+                #{blogImg},
+                #{blogTitle},
+                #{blogContent},
+                #{publishDate},
+                #{userId}
+        )
+    </insert>
+
+    <delete id="deleteByPrimaryKey" parameterType="String" >
+        DELETE FROM t_blog_info WHERE l_id = #{id}
+    </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.blog.pojo.BlogInfo" >
+        UPDATE t_blog_info
+         SET
+            l_id = #{id},
+            l_blog_type = #{blogType},
+            vc_blog_img = #{blogImg},
+            vc_blog_title = #{blogTitle},
+            vc_blog_content = #{blogContent},
+            d_publish_date = #{publishDate},
+            l_user_id = #{userId}
+        WHERE
+            l_id = #{id}
+    </update>
+
+
+
+</mapper>
