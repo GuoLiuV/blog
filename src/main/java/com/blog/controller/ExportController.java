@@ -69,8 +69,8 @@ public class ExportController {
             //所需数据，按照 key和 value存进去，有两个必须的数据 templeName  excelFileName
             Map<String, Object> dataMap = new HashMap<String, Object>();
             BlogInfo blog = new BlogInfo();
-            blog.setBlogTitle("--博客标题--");
-            blog.setBlogContent("--------------------博客文章内容----------------------！");
+            blog.setBlogTitle("-- 标题 --");
+            blog.setBlogContent("--------------------文章内容----------------------！");
             //blog = reportScoreService.selectById(id);
             dataMap.put("bean", blog);
             dataMap.put("templeName", "reportscore.xls");

@@ -6,6 +6,7 @@ import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -495,21 +496,24 @@ public class ExcelExportUtil {
 	}
 
 	public static void finalExport(Map dataMap,HttpServletRequest request, HttpServletResponse response){
-		//新建对象时把模板名称加进去
-		ExcelFile excelFile = new ExcelFile(dataMap.get("templeName").toString(), "", true);
-		excelFile.setExcelFileName(dataMap.get("excelFileName").toString());
-
-		String xlsPath = ClassUtils.getDefaultClassLoader().getResource("/xls/").getPath();
-		if (StringUtils.isNotEmpty(xlsPath)) {
-			xlsPath = xlsPath.substring(1, xlsPath.length());
+		try {
+			//新建对象时把模板名称加进去
+			ExcelFile excelFile = new ExcelFile(dataMap.get("templeName").toString(), "", true);
+			excelFile.setExcelFileName(dataMap.get("excelFileName").toString());
+			//获取根路径
+			String xlsPath = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+			if (StringUtils.isNotEmpty(xlsPath)) {
+				xlsPath = xlsPath + "xls/";
+				xlsPath = xlsPath.substring(1, xlsPath.length());
+			}
+			excelFile.setFilePackage(xlsPath);
+			//放置数据和模板
+			Workbook wb = ExcelExportUtil.putInExcelData(excelFile.getFilePackage() + excelFile.getFile(), dataMap);
+			//导出文件
+			ExcelExportUtil.export(excelFile, request, response, wb);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		excelFile.setFilePackage(xlsPath);
-		//模板名称
-		//ExcelExportUtil util = ExcelExportUtil.getInstance(dataMap.get("templeName").toString());
-		//放置数据和模板
-		Workbook wb = ExcelExportUtil.putInExcelData(excelFile.getFilePackage() + excelFile.getFile(), dataMap);
-		//导出文件
-		ExcelExportUtil.export(excelFile, request, response, wb);
 	}
 
 }

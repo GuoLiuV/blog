@@ -56,7 +56,11 @@
                         <label class="sr-only" for="semail">Your email</label>
                         <input type="email" id="semail" name="semail1" class="form-control mr-md-1 semail" placeholder="Enter email">
                     </div>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                    <button type="submit" class="btn btn-primary">Subscribe</button> &nbsp; &nbsp; &nbsp;
+					<button type="button" class="btn btn-success" onclick="BlogIndex.exportInfoReport();">
+						导出报表
+					</button>
+
                 </form>
 		    </div><!--//container-->
 	    </section>
@@ -172,7 +176,7 @@
     </div><!--//configure-panel-->
 
 	<aside th:replace="common/blog::footer_js"></aside>
-
+	<script th:src="@{/blog/index.js}" src="/blog/index.js"></script>
 </body>
 </html> 
 
