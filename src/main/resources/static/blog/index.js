@@ -15,8 +15,11 @@ var BlogIndex = function () {
 	//保存投委评分
 	_DataAPI.saveReportScore = "s/reportScore/saveReportScore.json";
 
-	//导出豁免函
+	//导出Excel
 	_DataAPI.exportReport = "export/exportBlogFile.do";
+
+	//导出Word
+	_DataAPI.exportWord = "export/exportWord.do";
 
 	//导出敏感人申告
 	_DataAPI.exportSeStaffReport = "s/seStaffReport/exportSeStaffReport.do";
@@ -25,6 +28,11 @@ var BlogIndex = function () {
 
 	var _exportInfoReport= function () {
 		var URL = _DataAPI.exportReport;
+		window.open(URL);
+	};
+
+	var _exportWordReport= function () {
+		var URL = _DataAPI.exportWord;
 		window.open(URL);
 	};
 
@@ -432,6 +440,9 @@ var BlogIndex = function () {
 		},
 		exportInfoReport:function(){
 			_exportInfoReport();
+		},
+		exportWordReport:function(){
+			_exportWordReport();
 		}
 	};
 }();

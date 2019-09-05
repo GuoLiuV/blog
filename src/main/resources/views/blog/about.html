@@ -50,7 +50,26 @@
     </header>
     
     <div class="main-wrapper">
-	    	    
+		<section class="cta-section theme-bg-light py-5">
+			<div class="container text-center">
+				<h2 class="heading">DevBlog - A Blog Template Made For Developers</h2>
+				<div class="intro">Welcome to my blog. Subscribe and get my latest blog post in your inbox.</div>
+				<form class="signup-form form-inline justify-content-center pt-3">
+					<div class="form-group">
+						<label class="sr-only" for="semail">Your email</label>
+						<input type="email"   name="semail1" class="form-control mr-md-1 semail" placeholder="Enter email">
+					</div>
+					<button type="submit" class="btn btn-primary">Subscribe</button> &nbsp; &nbsp; &nbsp;
+					<button type="button" class="btn btn-success" onclick="BlogIndex.exportInfoReport();">
+						导出Excel
+					</button> &nbsp; &nbsp; &nbsp;
+					<button type="button" class="btn btn-success" onclick="exportReport();">
+						导出Word
+					</button>
+
+				</form>
+			</div><!--//container-->
+		</section>
 	    <article class="about-section py-5">
 		    <div class="container">
 			    <h2 class="title mb-3">About Me</h2>
@@ -110,7 +129,6 @@
         </div><!--//panel-inner-->
     </div><!--//configure-panel-->
 	<aside th:replace="common/blog::footer_js"></aside>
-    
 
 </body>
 </html> 

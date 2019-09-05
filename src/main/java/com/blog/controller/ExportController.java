@@ -5,6 +5,8 @@ import com.blog.pojo.User;
 import com.blog.service.UserService;
 import com.blog.utils.DataTablePage;
 import com.blog.utils.ExcelExportUtil;
+import com.blog.utils.WordExportUtil;
+import com.blog.utils.WordFile;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,7 +63,7 @@ public class ExportController {
     public void exportReportScore(HttpServletRequest request, HttpServletResponse response) {
         /*, @RequestParam(value = "id", defaultValue = "") String id*/
         try {
-            URL url = this.getClass().getClassLoader().getResource("xls");
+            URL url = this.getClass().getClassLoader().getResource("model/xls/");
 
             File file = new File(url.getPath());
             String fileName = file.getName();
@@ -81,4 +83,26 @@ public class ExportController {
         }
     }
 
+    /**
+     * 导出DOC文档
+     * @param request
+     * @param response
+     * @param id
+     */
+    @RequestMapping(value = "/exportWord.do", produces = {"application/force-download;charset=UTF-8"})
+    public void exportSeStaffReport(HttpServletRequest request, HttpServletResponse response,
+                                    String id){
+        BlogInfo blog = new BlogInfo();
+        Map dataMap = new HashMap();
+        try {
+            //seStaffReport = seStaffReportService.selectById(id);
+            //putSeStaffReportDataMap(dataMap,seStaffReport);
+            WordFile wordFile=new WordFile();
+            wordFile.setTemplateName("sestaffreport.docx");
+            wordFile.setExportFileName("敏感人申告");
+            WordExportUtil.export(request,response,wordFile,dataMap);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }

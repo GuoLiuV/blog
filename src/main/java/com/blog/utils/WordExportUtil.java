@@ -21,7 +21,7 @@ public class WordExportUtil {
         if(wordFile.getTemplateName()==null|| StringUtils.isEmpty(wordFile.getTemplateName())) throw new  Exception("导出模板名称不能为null");
         if(wordFile.getExportFileName()==null|| StringUtils.isEmpty(wordFile.getExportFileName())) throw new  Exception("导出名称不能为null");
         //获取路径
-        String wordPath=  ClassUtils.getDefaultClassLoader().getResource("/word/").getPath();
+        String wordPath=  ClassUtils.getDefaultClassLoader().getResource("").getPath() + "model/word/";
         XWPFDocument xwpfDocument=cn.afterturn.easypoi.word.WordExportUtil.exportWord07(wordPath+wordFile.getTemplateName(),data);
         String finalFileName = null;
         final String userAgent = request.getHeader("USER-AGENT");

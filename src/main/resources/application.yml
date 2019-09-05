@@ -104,3 +104,13 @@ server:
   port: 8080
 logging:
   path: /usr/local/mydata/myjars
+
+# 线程池配置
+
+### Thread
+glv:
+  thread:
+    core-pool-size: 50
+    maximum-pool-size: 100
+    keep-alive-time: 60
+    blocking-queue: 100

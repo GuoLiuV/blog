@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.EmailSettingInfoMapper">
+    <select id="getEmailSettingInfo" resultType="String">
+        select
+            s.vc_value
+        FROM
+          sys_setting s
+        WHERE
+          s.vc_code = '1'
+    </select>
+    <!--修改消息记录状态-->
+    <update id="updateMessageRecordStatusById" parameterType="String">
+     /* update sys_msg_record set e_send_status = #{0} where l_record_id = #{1}*/
+    </update>
+</mapper>
